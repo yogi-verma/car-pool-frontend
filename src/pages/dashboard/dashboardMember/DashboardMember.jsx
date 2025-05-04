@@ -10,6 +10,8 @@ import L from "leaflet";
 // import { AvailableSeatsContext } from "../../../context/AvailableSeatsContext"; // Import the context
 import { FaUserCircle } from "react-icons/fa";
 
+const API_BASE_URL = "https://car-pool-backend-eta.vercel.app";
+
 const DashboardMember = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -69,7 +71,7 @@ const DashboardMember = () => {
 
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/carowners/${place}`
+        `${API_BASE_URL}/api/carowners/${place}`
       );
 
       const sortedCarOwners = response.data.data.sort((a, b) => {
@@ -99,7 +101,7 @@ const DashboardMember = () => {
    const handleDeleteAccount = async () => {
       if (window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
         try {
-          await axios.delete(`http://localhost:5000/api/members/${user.muid}`);
+          await axios.delete(`${API_BASE_URL}/api/members/${user.muid}`);
           alert("Account deleted successfully.");
           localStorage.removeItem("token");
           localStorage.removeItem("loggedInOwner");

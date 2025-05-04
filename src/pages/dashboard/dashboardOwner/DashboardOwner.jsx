@@ -9,7 +9,8 @@ import { AiOutlineNumber } from "react-icons/ai";
 import io from "socket.io-client";
 import axios from "axios";
 import { LuSquareParking } from "react-icons/lu";
-const SOCKET_SERVER_URL = "http://localhost:5000";
+const SOCKET_SERVER_URL = "https://car-pool-backend-eta.vercel.app";
+const API_BASE_URL = "https://car-pool-backend-eta.vercel.app";
 
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -80,7 +81,7 @@ const DashboardOwner = () => {
   const handleLogout = async () => {
     if (owner) {
       try {
-        await axios.post("http://localhost:5000/api/carowners/logoutOwner", {
+        await axios.post(`${API_BASE_URL}/api/carowners/logoutOwner`, {
           uid: owner.uid,
         });
       } catch (error) {
@@ -98,7 +99,7 @@ const DashboardOwner = () => {
   const handleDeleteAccount = async () => {
     if (window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
       try {
-        await axios.delete(`http://localhost:5000/api/carowners/${owner.uid}`);
+        await axios.delete(`${API_BASE_URL}/api/carowners/${owner.uid}`);
         alert("Account deleted successfully.");
         localStorage.removeItem("token");
         localStorage.removeItem("loggedInOwner");
@@ -236,7 +237,7 @@ const DashboardOwner = () => {
                   owner?.profilePhoto?.startsWith("http")
                     ? owner.profilePhoto
                     : owner?.profilePhoto
-                    ? `http://localhost:5000/${owner.profilePhoto}`
+                    ? `${API_BASE_URL}/${owner.profilePhoto}`
                     : "https://via.placeholder.com/150"
                 }
                 alt="Profile"

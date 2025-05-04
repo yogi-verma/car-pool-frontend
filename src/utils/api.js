@@ -1,4 +1,4 @@
-
+const BASE_URL = "https://car-pool-backend-eta.vercel.app/";
 
 // Helper function to handle responses
 const handleResponse = async (response) => {
@@ -12,7 +12,7 @@ const handleResponse = async (response) => {
 // Register Car Owner
 export const signupCarOwner = async (formData) => {
     try {
-        const response = await fetch(`http://localhost:5000/api/carowners/signupOwner`, {
+        const response = await fetch(`${BASE_URL}/api/carowners/signupOwner`, {
             method: "POST",
             body: formData,
         });
@@ -34,7 +34,7 @@ export const signupCarOwner = async (formData) => {
 // Login Car Owner
 export const loginCarOwner = async (formData) => {
     try {
-        const response = await fetch(`http://localhost:5000/api/carowners/loginOwner`, {
+        const response = await fetch(`${BASE_URL}/api/carowners/loginOwner`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formData),
@@ -55,7 +55,7 @@ export const loginCarOwner = async (formData) => {
 // Fetch Dashboard Data (Requires Auth)
 export const getDashboard = async (token) => {
     try {
-        const response = await fetch(`http://localhost:5000/api/carowners/dashboardOwner`, {
+        const response = await fetch(`${BASE_URL}/api/carowners/dashboardOwner`, {
             method: "GET",
             headers: { Authorization: `Bearer ${token}` },
         });
@@ -84,7 +84,7 @@ export const getDashboard = async (token) => {
 // Register Member
 export const signupMember = async (userData) => {
     try {
-        const response = await fetch("http://localhost:5000/api/members/signupMember", {
+        const response = await fetch(`${BASE_URL}/api/members/signupMember`, {
             method: "POST",
             body: userData,
         });
@@ -105,7 +105,7 @@ export const signupMember = async (userData) => {
 // Login Member
 export const loginMember = async (credentials) => {
     try {
-        const response = await fetch("http://localhost:5000/api/members/loginMember", {
+        const response = await fetch(`${BASE_URL}/api/members/loginMember`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(credentials),
@@ -130,7 +130,7 @@ export const getDashboardMember = async (token) => {
     try {
         // console.log("Sending Token:", token); // Debugging log
 
-        const response = await fetch("http://localhost:5000/api/members/dashboardMember", {
+        const response = await fetch(`${BASE_URL}/api/members/dashboardMember`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -155,7 +155,7 @@ export const getDashboardMember = async (token) => {
 
 export const getCarOwnersByLocation = async (location) => {
     try {
-        const response = await fetch(`http://localhost:5000/api/carowners/${location}`);
+        const response = await fetch(`${BASE_URL}/api/carowners/${location}`);
         const data = await response.json();
 
         if (!response.ok) {
@@ -174,7 +174,7 @@ export const getCarOwnersByLocation = async (location) => {
 export const getBookings = async (ownerId) => {
     try {
         // Make the API request to fetch bookings
-        const response = await fetch(`http://localhost:5000/api/bookings/owner/${ownerId}`, {
+        const response = await fetch(`${BASE_URL}/api/bookings/owner/${ownerId}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
